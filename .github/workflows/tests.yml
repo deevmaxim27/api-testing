@@ -1,0 +1,33 @@
+name: Run API Tests with Allure
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Run tests with Maven
+        run: mvn clean test
+
+      - name: Generate Allure Report
+        run: mvn allure:report
+
+      - name: Upload Allure Report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: target/site/allure-maven-plugin
