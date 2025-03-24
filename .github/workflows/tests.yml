@@ -26,3 +26,4 @@ jobs:
         with:
           name: allure-results
           path: target/allure-results
+
