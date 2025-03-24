@@ -18,8 +18,8 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Build and run tests
-        run: mvn clean test
+      - name: Build and run tests with Allure support
+        run: mvn clean test -Dsurefire.useFile=false
 
       - name: Upload Allure results
         uses: actions/upload-artifact@v3
