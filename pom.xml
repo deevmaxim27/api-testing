@@ -79,6 +79,7 @@
                 <directory>src/test/resources</directory>
                 <includes>
                     <include>META-INF/**</include>
+                    <include>**/*.properties</include>
                 </includes>
             </testResource>
         </testResources>
