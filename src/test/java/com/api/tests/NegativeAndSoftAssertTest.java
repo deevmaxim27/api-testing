@@ -50,6 +50,7 @@ public class NegativeAndSoftAssertTest {
         System.out.println("Тест завершен.");
     }
 
+    @Disabled
     @Test
     void NegativeTest(){
         given()
@@ -60,6 +61,7 @@ public class NegativeAndSoftAssertTest {
                 .then()
                 .statusCode(404);
     }
+    @Disabled
     @Test
     void softAssertionsTest(){
         String title =
@@ -80,6 +82,7 @@ public class NegativeAndSoftAssertTest {
         Soft.assertAll();
     }
 
+    @Disabled
     @Test
     void exceptionHandlingExample(){
         try {

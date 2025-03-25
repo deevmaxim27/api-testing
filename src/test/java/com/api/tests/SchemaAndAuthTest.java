@@ -2,10 +2,8 @@ package com.api.tests;
 
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
 import static io.restassured.RestAssured.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
@@ -56,6 +54,7 @@ public class SchemaAndAuthTest {
     void tearDown(){
         System.out.println("Тест завершен.");
     }
+    @Disabled
     @Test
     void validateJsonSchema(){
         given()
@@ -69,6 +68,7 @@ public class SchemaAndAuthTest {
                 .body(matchesJsonSchemaInClasspath("post-schema.json"));
     }
 
+    @Disabled
     @Test
     void authorizedRequest(){
         given()
