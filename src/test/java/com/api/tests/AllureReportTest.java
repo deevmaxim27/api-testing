@@ -1,20 +1,25 @@
 package com.api.tests;
 
+import com.api.utils.EnvironmentManager;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.equalTo;
 
 @Epic("API-тестирование")
 @Feature("Посты")
 public class AllureReportTest {
+
+    @BeforeAll
+    static void setup() {
+        baseURI = EnvironmentManager.get("base.uri");
+        basePath = EnvironmentManager.get("base.path");
+    }
 
     @Test
     @Story("Проверка существующего поста")
@@ -37,7 +42,7 @@ public class AllureReportTest {
         return given()
                 .pathParam("id", postId)
                 .when()
-                .get("https://jsonplaceholder.typicode.com/posts/{id}");
+                .get("/{id}");
     }
 
     @Step("Проверяем, что id поста равен {expectedId}")
@@ -46,9 +51,9 @@ public class AllureReportTest {
     }
 
     @Attachment(value = "{filename}", type = "application/json")
-    public byte[] attachResponseAsFile(Response response, String filename) throws IOException {
-        // Преобразуем тело ответа в байты и возвращаем для вложения
+    public byte[] attachResponseAsFile(Response response, String filename) {
         return response.getBody().asByteArray();
     }
 }
+
 
