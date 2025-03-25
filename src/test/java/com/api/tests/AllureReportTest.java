@@ -17,8 +17,8 @@ public class AllureReportTest {
 
     @BeforeAll
     static void setup() {
-        baseURI = EnvironmentManager.get("base.uri");
-        basePath = EnvironmentManager.get("base.path");
+        io.restassured.RestAssured.baseURI = EnvironmentManager.get("base.url");
+        io.restassured.RestAssured.basePath = EnvironmentManager.get("base.path");
     }
 
     @Test
