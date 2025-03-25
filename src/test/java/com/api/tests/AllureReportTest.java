@@ -5,6 +5,11 @@ import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import com.api.utils.AllureEnvironmentWriter;
+import java.util.HashMap;
+import java.util.Map;
+
+
 
 import java.io.IOException;
 
@@ -19,6 +24,12 @@ public class AllureReportTest {
     static void setup() {
         io.restassured.RestAssured.baseURI = EnvironmentManager.get("base.url");
         io.restassured.RestAssured.basePath = EnvironmentManager.get("base.path");
+
+        Map<String, String> env = new HashMap<>();
+        env.put("ENV", "dev");
+        env.put("Base URL", baseURI);
+        env.put("Base Path", basePath);
+        AllureEnvironmentWriter.write(env);
     }
 
     @Test
